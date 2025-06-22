@@ -1,0 +1,13 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#mandrake{
+    display: none;
+}
+
+#canvas{
+    background-color: bisque;
+}
