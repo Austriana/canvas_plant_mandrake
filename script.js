@@ -1,3 +1,4 @@
+import { Background } from "./background.js";
 import { Mandrake } from "./mandrake.js";
 import { Player } from "./player.js";
 
@@ -7,21 +8,21 @@ window.addEventListener('load', () =>{
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    const background = new Background(canvas.width, canvas.height);
     const player = new Player(canvas.width, canvas.height);
-    const mandrake = new Mandrake(canvas.width, canvas.height);
+    const mandrakeArray = [];
 
-    window.addEventListener('keypress', (event) => {
-        let key = event.code;
-        if(key === 'Digit0'){
-                        console.log(mandrake);
-
-            mandrake.mandrakeArray.splice(0, 1);
+    window.addEventListener('mousedown', (event) => {
+        let key = event.button;
+        if(key === 2){
+            mandrakeArray.splice(0, 1);
         };
-        if(key === 'Digit1'){
-            console.log(mandrake);
-            mandrake.mandrakeArray.push(new Mandrake(canvas.width, canvas.height));
+        if(key === 0){
+            player.flag = true;
+            mandrakeArray.push(new Mandrake(canvas.width, canvas.height, player));
         };
     });
+    
         window.addEventListener('mousemove', (event) => {
         player.mouse.x = event.x;
         player.mouse.y = event.y;
@@ -29,12 +30,16 @@ window.addEventListener('load', () =>{
 
     function animate(){
         ctx.clearRect(0,0,canvas.width, canvas.height)
-        player.draw(ctx);
-        player.update();
-        mandrake.mandrakeArray.forEach(mandrake =>{
+        background.draw(ctx);
+        mandrakeArray.forEach(mandrake =>{
             mandrake.draw(ctx);
             mandrake.update();
+            if(mandrake.frame === 355){
+                 mandrakeArray.splice(mandrake,1)
+            }
         });
+        player.draw(ctx);
+        player.update();
         requestAnimationFrame(animate);
     };
 
