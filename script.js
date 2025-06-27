@@ -13,14 +13,14 @@ window.addEventListener('load', () =>{
     const mandrakeArray = [];
     let touch = false;
 
-    window.addEventListener('touchmove', () => {
+    window.addEventListener('touchend', () => {
         touch = true;
         if(touch)
             player.flag = true;
             mandrakeArray.push(new Mandrake(canvas.width, canvas.height, player));
     });
     
-    window.addEventListener('touchmove', (event) => {
+    window.addEventListener('touchstart', (event) => {
         touch = true;
         if(touch){
             player.mouse.x = event.touches[0].clientX;
