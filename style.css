@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-#mandrake{
-    display: none;
-}
-
 #canvas{
     background-color: bisque;
 }
