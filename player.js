@@ -17,14 +17,12 @@ export class Player{
         this.minFrame = 0;
         this.maxFrame = 7;
         this.frameX = this.minFrame;
-        this.gameFrame = 0;
         this.flag = false;
     };
 
     draw(context){
         context.drawImage(this.image, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
     };
-
 
     update(){
         if(this.flag === true){
@@ -33,7 +31,6 @@ export class Player{
             } else {
                 this.frameX = this.minFrame;
                 this.flag = false;
-                this.gameFrame = 0;
             }
         }
         this.x = this.mouse.x - (this.spriteWidth/2);

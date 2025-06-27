@@ -14,7 +14,4 @@ export class Background{
     draw(context){
         context.drawImage(this.image, 0, 0, this.width, this.height)
     }
-    update(){
-
-    }
 }

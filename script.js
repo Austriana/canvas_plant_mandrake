@@ -4,50 +4,22 @@ import { Player } from "./player.js";
 
 window.addEventListener('load', () =>{
     const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');    
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     const background = new Background(canvas.width, canvas.height);
     const player = new Player(canvas.width, canvas.height);
     const mandrakeArray = [];
-    let touch = false;
 
-    window.addEventListener('touchend', () => {
-        touch = true;
-        if(touch)
-            player.flag = true;
-            mandrakeArray.push(new Mandrake(canvas.width, canvas.height, player));
-    });
-    
-    window.addEventListener('touchstart', (event) => {
-        touch = true;
-        if(touch){
-            player.mouse.x = event.touches[0].clientX;
-            player.mouse.y = event.touches[0].clientY;
-        }
-    });
-
-    window.addEventListener('mousedown', (event) => {
-        touch = false;
-        if(!touch){
-            let key = event.button;
-            if(key === 2){
-                mandrakeArray.splice(0, 1);
-            };
-            if(key === 0){
+    window.addEventListener('click', () => {
                 player.flag = true;
                 mandrakeArray.push(new Mandrake(canvas.width, canvas.height, player));
-            };
-        }
     });
 
     window.addEventListener('mousemove', (event) => {
-        touch = false;
-        if(!touch){
             player.mouse.x = event.x;
             player.mouse.y = event.y;
-        }
     });
 
     function animate(){
